@@ -1258,7 +1258,8 @@ class WPSDB extends WPSDB_Base {
 
 	function get_post_max_size() {
 		$val = trim( ini_get( 'post_max_size' ) );
-		$last = strtolower( $val[ strlen( $val ) - 1 ] );
+    $val = preg_replace('/[^0-9\.]/', '', $val); //added this line
+    $last = strtolower( $val[ strlen( $val ) - 1 ] );
 		switch ( $last ) {
 		case 'g':
 			$val *= 1024;
